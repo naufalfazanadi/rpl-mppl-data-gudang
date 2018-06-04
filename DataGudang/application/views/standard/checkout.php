@@ -8,20 +8,31 @@
         <li class="breadcrumb-item">
           <a href="<?php echo base_url('Barang/out'); ?>">Ambil Barang</a>
         </li>
-        <li class="breadcrumb-item active">Cart</li>
+        <li class="breadcrumb-item">
+          <a href="<?php echo base_url('Barang/Cart'); ?>">Cart</a>
+        </li>
+        <li class="breadcrumb-item active">Checkout</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Cart
+          <i class="fa fa-table"></i> Checkout
         </div>
         <div class="card-body page navigation">
-          <div class="pagination justify-content-end">
-            <button class="btn btn-warning rounded"><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo $this->cart->total_items(). " Items"; ?></button></a><br>
-          </div>
-          <br>
           <div class="table-responsive">
-            <form action="<?php echo base_url('Barang/updateCart') ?>" method="GET">
+            <form action="<?php echo base_url('Barang/proses_checkout') ?>" method="GET">
+              <label>Pilih Customer</label>
+              <select class="custom-select" name="id_customer">
+                <?php foreach ($customer as $value): ?>
+                  <?php if ($value->ID_CUSTOMER != 99) { ?>
+                <option value="<?php echo $value->ID_CUSTOMER ?>">
+                  <?php echo $value->NAMA_CUSTOMER; ?>
+                </option>
+                  <?php } ?>
+                <?php endforeach; ?>
+              </select>
+              <br><br>
+
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -38,9 +49,8 @@
                 <tr>
                   <td><?php echo $i; ?></td>
                   <input type="hidden" name="<?php echo "rowid"."_".$i ?>" value="<?php echo $items['rowid'] ?>">
-                  <td>
-                    <input style="max-width: 50px" type="number" name="<?php echo "qty"."_".$i ?>" value="<?php echo $items['qty']; ?>">
-                  </td>
+                    <input type="hidden" name="<?php echo "qty"."_".$i ?>" value="<?php echo $items['qty']; ?>">
+                  <td><?php echo $items['qty']; ?></td>
                   <td><?php echo $items['name']; ?></td>
                   <td>Rp <?php echo $this->cart->format_number($items['price']); ?></td>
                   <td>Rp <?php echo $this->cart->format_number($items['subtotal']); ?></td>
@@ -55,8 +65,8 @@
               </tbody>
             </table>
             <input type="hidden" name="n" value="<?php echo $i ?>">
-            <button class="btn btn-primary" type="submit">Update Cart</button>
-            <a class="btn btn-danger" href="<?php echo base_url('Barang/Checkout'); ?>">Checkout</a>
+            <button class="btn btn-danger" type="submit">Proses Transaksi</button>
+            <a class="btn btn-secondary" href="<?php echo base_url('Barang/Cart'); ?>">Cancel</a>
             </form>
           </div>
         </div>

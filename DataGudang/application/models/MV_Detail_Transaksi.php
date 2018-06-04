@@ -48,15 +48,15 @@
             return $q->result();
         }
 
-       public function insertData($data)
+        public function insertData($data)
         {
-            $this->db->insert('t_transaksi', $data);
+            $this->db->insert('t_detail_transaksi', $data);
         }
 
         public function deleteData($xid)
         {
-            $this->db->where('id_transaksi', $xid);
-            $this->db->delete('t_transaksi');
+            $this->db->where('id_detail_transaksi', $xid);
+            $this->db->delete('t_detail_transaksi');
         }
     }
 ?>

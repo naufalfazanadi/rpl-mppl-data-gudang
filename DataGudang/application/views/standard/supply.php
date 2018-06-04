@@ -5,16 +5,16 @@
         <li class="breadcrumb-item">
           <a href="<?php echo base_url('Standard'); ?>">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Ambil Barang</li>
+        <li class="breadcrumb-item active">Supply Barang</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Ambil Barang
+          <i class="fa fa-table"></i> Supply Barang
         </div>
         <div class="card-body page navigation">
           <div class="pagination justify-content-end">
-            <a href="<?php echo base_url('Barang/cart'); ?>"><button class="btn btn-warning rounded"><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo $this->cart->total_items(). " Items"; ?></button></a><br>
+            <a href="<?php echo base_url('Barang/supplyCart'); ?>"><button class="btn btn-warning rounded"><i class="fa fa-plus"></i>&nbsp;<?php echo $this->cart->total_items(). " Items"; ?></button></a><br>
           </div>
           <br>
           <form class="pagination justify-content-end" action="<?php echo base_url('Barang/get') ?>" method="GET">
@@ -44,10 +44,10 @@
                 </option>
               </select>
               <input class="form-control" name="search" type="text" value="<?php if($this->input->get('search')) echo $this->input->get('search') ?>" placeholder="Search">
-              <input name="page" type="hidden" value="out">
+              <input name="page" type="hidden" value="supply">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit"><span><i class="fa fa-search"></i></span></button>
-              <a class="btn btn-outline-success" href="<?php echo base_url('Barang/out') ?>"><span><i class="fa fa-refresh"></i> Refresh</span></a>
+              <a class="btn btn-outline-success" href="<?php echo base_url('Barang/supply') ?>"><span><i class="fa fa-refresh"></i> Refresh</span></a>
               </div>
             </div>
           </form>
@@ -80,7 +80,7 @@
               </tfoot>
               <tbody>
                 <?php $i = 1; ?>
-                <?php foreach ($result as $hasil) { ?>
+                <?php foreach ($barang as $hasil) { ?>
                 <tr>
                   <td><?php echo $i++; ?></td>
                   <td><?php echo $hasil->KODE_BARANG; ?></td>
@@ -108,13 +108,13 @@
                   </td>
                   <td>
                     <a href="
-                      <?php echo base_url('Barang/addCart').
+                      <?php echo base_url('Barang/addSupplyCart').
                         "?barang=".$hasil->ID_BARANG.
                         "&nama=".$hasil->NAMA_BARANG.
                         "&harga=".$hasil->HARGA_BARANG.
                         "&qty=1";
                       ?>">
-                      <button class="btn btn-warning rounded" <?php if ($status == 0) {echo "disabled";} ?>><i class="fa fa-plus"></i> Add to Cart</button></a>
+                      <button class="btn btn-warning rounded" <?php if ($status == 0) {echo "disabled";} ?>><i class="fa fa-plus"></i> Add Supply</button></a>
                     <!-- <a href=""><button class="btn btn-danger rounded">Hapus</button></a> -->
                   </td>
                 </tr>

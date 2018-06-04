@@ -18,7 +18,7 @@
                 <strong>Ambil Barang</strong>
               </div>
             </div>
-            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Barang') ?>">
+            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Barang/out') ?>">
               <span class="float-left">Masuk</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>
@@ -37,7 +37,7 @@
                 <!-- <p>asas<p> -->
               </div>
             </div>
-            <a class="card-footer text-black clearfix small z-1" href="#">
+            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Barang/supply') ?>">
               <span class="float-left">Masuk</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>

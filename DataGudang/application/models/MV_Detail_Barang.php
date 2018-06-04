@@ -52,7 +52,7 @@
             return $q->result();
         }
 
-       public function insertData($data)
+        public function insertData($data)
         {
             $this->db->insert('t_detail_barang', $data);
         }

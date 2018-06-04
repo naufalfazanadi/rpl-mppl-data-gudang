@@ -6,14 +6,14 @@
           <a href="<?php echo base_url('Standard'); ?>">Dashboard</a>
         </li>
         <li class="breadcrumb-item">
-          <a href="<?php echo base_url('Barang/out'); ?>">Ambil Barang</a>
+          <a href="<?php echo base_url('Barang/supply'); ?>">Supply Barang</a>
         </li>
-        <li class="breadcrumb-item active">Cart</li>
+        <li class="breadcrumb-item active">Supply Cart</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Cart
+          <i class="fa fa-table"></i>Supply Cart
         </div>
         <div class="card-body page navigation">
           <div class="pagination justify-content-end">
@@ -21,7 +21,7 @@
           </div>
           <br>
           <div class="table-responsive">
-            <form action="<?php echo base_url('Barang/updateCart') ?>" method="GET">
+            <form action="<?php echo base_url('Barang/updateSupplyCart') ?>" method="GET">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -55,8 +55,8 @@
               </tbody>
             </table>
             <input type="hidden" name="n" value="<?php echo $i ?>">
-            <button class="btn btn-primary" type="submit">Update Cart</button>
-            <a class="btn btn-danger" href="<?php echo base_url('Barang/Checkout'); ?>">Checkout</a>
+            <button class="btn btn-primary" type="submit">Update Supply Cart</button>
+            <a class="btn btn-danger" href="<?php echo base_url('Barang/Checksupply'); ?>">Checksupply</a>
             </form>
           </div>
         </div>

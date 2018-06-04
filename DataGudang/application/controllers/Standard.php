@@ -34,7 +34,7 @@ class Standard extends CI_Controller {
 	{
 		if ($this->verify())
 		{
-			$this->load->view('header');
+			$this->load->view('header_standard');
 			$this->load->view('dashboard_standard');
 			$this->load->view('footer');
 		}
