@@ -5,23 +5,23 @@
         <li class="breadcrumb-item">
           <a href="<?php echo base_url('Admin'); ?>">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Barang</li>
+        <li class="breadcrumb-item active">Detail Barang</li>
       </ol>
-      <a href="<?php echo base_url('Barang/add'); ?>">
+      <a href="<?php echo base_url('Detail_Barang/add'); ?>">
         <button class="btn btn-success">
           <span>
             <i class="fa fa-plus"></i>
           </span>
-          Tambah Barang
+          Tambah Detail Barang
         </button>
       </a>
       <br><br>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Master Barang</div>
+          <i class="fa fa-table"></i> Data Detail Barang</div>
         <div class="card-body page navigation">
-          <form class="pagination justify-content-end" action="<?php echo base_url('Barang/get') ?>" method="GET">
+          <form class="pagination justify-content-end" action="<?php echo base_url('Detail_Barang/get') ?>" method="GET">
             <div class="input-group" style="max-width: 50%">
               <div class="input-group-prepend">
                 <span class="input-group-text">Search by:</span>
@@ -46,11 +46,41 @@
                   <?php if($this->input->get('getBy') == "NAMA_MEREK") echo "selected" ?>>
                   Merek
                 </option>
+
+                <option value="NAMA_GUDANG" 
+                  <?php if($this->input->get('getBy') == "NAMA_GUDANG") echo "selected" ?>>
+                  Gudang
+                </option>
+
+                <option value="ALAMAT_GUDANG" 
+                  <?php if($this->input->get('getBy') == "ALAMAT_GUDANG") echo "selected" ?>>
+                  Alamat Gudang
+                </option>
+
+                <option value="LOKASI_BARANG" 
+                  <?php if($this->input->get('getBy') == "LOKASI_BARANG") echo "selected" ?>>
+                  Lokasi Barang
+                </option>
               </select>
               <input class="form-control" name="search" type="text" value="<?php if($this->input->get('search')) echo $this->input->get('search') ?>" placeholder="Search">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="submit"><span><i class="fa fa-search"></i></span></button>
-              <a class="btn btn-outline-success" href="<?php echo base_url('Barang') ?>"><span><i class="fa fa-refresh"></i> Refresh</span></a>
+              <a class="btn btn-outline-success" href="<?php echo base_url('Detail_Barang') ?>"><span><i class="fa fa-refresh"></i> Refresh</span></a>
+              </div>
+            </div>
+          </form>
+          <form class="pagination justify-content-end" action="<?php echo base_url('Detail_Barang/stok') ?>" method="GET">
+            <div class="input-group" style="max-width: 50%">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Search by stok:</span>
+              </div>
+              <input class="form-control" name="min" type="text" value="<?php if($this->input->get('min')) echo $this->input->get('min') ?>" placeholder="Min" required>
+              <div class="input-group-prepend">
+                <span class="input-group-text">-</span>
+              </div>
+              <input class="form-control" name="max" type="text" value="<?php if($this->input->get('max')) echo $this->input->get('max') ?>" placeholder="Max" required>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"><span><i class="fa fa-search"></i></span></button>
               </div>
             </div>
           </form>
@@ -64,7 +94,9 @@
                   <th>Nama Barang</th>
                   <th>Kategori</th>
                   <th>Merek</th>
-                  <th>Harga</th>
+                  <th>Gudang</th>
+                  <th>Alamat Gudang</th>
+                  <th>Lokasi Barang</th>
                   <th>Stok</th>
                   <th>Action</th>
                 </tr>
@@ -76,7 +108,9 @@
                   <th>Nama Barang</th>
                   <th>Kategori</th>
                   <th>Merek</th>
-                  <th>Harga</th>
+                  <th>Gudang</th>
+                  <th>Alamat Gudang</th>
+                  <th>Lokasi Barang</th>
                   <th>Stok</th>
                   <th>Action</th>
                 </tr>
@@ -90,23 +124,22 @@
                   <td><?php echo $hasil->NAMA_BARANG; ?></td>
                   <td><?php echo $hasil->NAMA_KATEGORI; ?></td>
                   <td><?php echo $hasil->NAMA_MEREK; ?></td>
-                  <td><?php echo $hasil->HARGA_BARANG; ?></td>
-                  <td>
-                    <?php 
-                      if (isset($stock[$i-2])) 
-                      {echo $stock[$i-2]->JUMLAH_STOK;} 
-                      else {echo "0";}
-                    ?>
-                  </td>
+                  <td><?php echo $hasil->NAMA_GUDANG; ?></td>
+                  <td><?php echo $hasil->ALAMAT_GUDANG; ?></td>
+                  <td><?php echo $hasil->LOKASI_BARANG; ?></td>
+                  <td><?php echo $hasil->STOK_BARANG; ?></td>
                   <td>
                     <a href="
-                      <?php echo base_url('Barang/edit').
+                      <?php echo base_url('Detail_Barang/edit').
                         "?kode=".$hasil->KODE_BARANG.
                         "&nama=".$hasil->NAMA_BARANG.
                         "&kategori=".$hasil->NAMA_KATEGORI.
                         "&merek=".$hasil->NAMA_MEREK.
-                        "&harga=".$hasil->HARGA_BARANG.
-                        "&id=".$hasil->ID_BARANG;
+                        "&gudang=".$hasil->NAMA_GUDANG.
+                        "&alamat=".$hasil->ALAMAT_GUDANG.
+                        "&lokasi=".$hasil->LOKASI_BARANG.
+                        "&stok=".$hasil->STOK_BARANG.
+                        "&id=".$hasil->ID_DETAIL_BARANG;
                       ?>">
                       <button class="btn btn-warning rounded"><i class="fa fa-edit"></i> Edit</button></a>
                     <!-- <a href=""><button class="btn btn-danger rounded">Hapus</button></a> -->

@@ -7,6 +7,7 @@ class Barang extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('MV_Barang');
+		$this->load->model('MV_Stok');
 		$this->load->model('M_Kategori');
 		$this->load->model('M_Merek');
 	}
@@ -38,6 +39,7 @@ class Barang extends CI_Controller {
 		if ($this->verify())
 		{
 			$data['result'] = $this->MV_Barang->getAll();
+			$data['stock'] = $this->MV_Stok->getAll();
 			$this->load->view('header');
 			$this->load->view('table/barang', $data);
 			$this->load->view('footer');

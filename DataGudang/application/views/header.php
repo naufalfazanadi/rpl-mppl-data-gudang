@@ -38,7 +38,7 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseBarang">
             <li>
-              <a href="navbar.html"><i class="fa fa-fw fa-cube"></i> Master Barang</a>
+              <a href="<?php echo base_url('Barang') ?>"><i class="fa fa-fw fa-cube"></i> Master Barang</a>
             </li>
             <li>
               <a href="<?php echo base_url('kategori') ?>"><i class="fa fa-fw fa-list"></i> Kategori</a>
@@ -47,7 +47,7 @@
               <a href="<?php echo base_url('merek') ?>"><i class="fa fa-fw fa-certificate"></i> Merek</a>
             </li>
             <li>
-              <a href="cards.html"> <i class="fa fa-fw fa-cogs"></i> Stok dan Detail Barang</a>
+              <a href="<?php echo base_url('Detail_barang') ?>"> <i class="fa fa-fw fa-cogs"></i> Stok dan Detail Barang</a>
             </li>
           </ul>
         </li>
@@ -82,10 +82,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseTransaksi">
             <li>
-              <a href="navbar.html"><i class="fa fa-fw fa-plus"></i> Masuk</a>
+              <a href="<?php echo base_url('Transaksi/masuk') ?>"><i class="fa fa-fw fa-plus"></i> Masuk</a>
             </li>
             <li>
-              <a href="cards.html"><i class="fa fa-fw fa-minus"></i> Keluar</a>
+              <a href="<?php echo base_url('Transaksi/keluar') ?>"><i class="fa fa-fw fa-minus"></i> Keluar</a>
             </li>
           </ul>
         </li>
