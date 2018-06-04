@@ -6,43 +6,106 @@ class Supplier extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
+		$this->load->library('session');
 		$this->load->model('M_Supplier');
 	}
 
+	// MENU SUPPLIER HANYA UNTUK ADMIN
+	public function verify()
+	{
+		if ($this->session->userdata('isLoggedIn'))
+		{
+			if ($this->session->userdata('tipe') == "Admin")
+			{
+				return TRUE;
+			}
+			else
+			{
+				$this->load->view('blank');
+			}
+		}
+		else
+		{
+			$this->load->view('login');
+		}
+	}
+
+	// SUPPLIER
 	public function index()
 	{
-		$data['result'] = $this->M_Supplier->getAll();
-		$this->load->view('v_supplier', $data);
+		if ($this->verify())
+		{
+			$data['result'] = $this->M_Supplier->getAll();
+			$this->load->view('header');
+			$this->load->view('table/supplier', $data);
+			$this->load->view('footer');
+		}
 	}
 
-	public function getByKode($xkode)
+	public function get()
 	{
-		$data['result'] = $this->M_Supplier->getbyKode($xkode);
-		$this->load->view('v_supplier', $data);
+		if ($this->verify())
+		{
+			$xparam = $this->input->get('getBy');
+			$xargs = $this->input->get('search');
+			$data['result'] = $this->M_Supplier->getBy($xparam, $xargs);
+			$this->load->view('header');
+			$this->load->view('table/supplier', $data);
+			$this->load->view('footer');
+		}
 	}
 
-	public function getByNama($xnama)
+	public function add()
 	{
-		$data['result'] = $this->M_Supplier->getbyNama($xnama);
-		$this->load->view('v_supplier', $data);
+		if ($this->verify())
+		{
+			$this->load->view('header');
+			$this->load->view('insert/supplier');
+			$this->load->view('footer');
+		}
 	}
 
-	public function getByAlamat($xalamat)
+	public function edit()
 	{
-		$data['result'] = $this->M_Supplier->getbyAlamat($xalamat);
-		$this->load->view('v_supplier', $data);
+		if ($this->verify())
+		{
+			$this->load->view('header');
+			$this->load->view('edit/supplier');
+			$this->load->view('footer');
+		}
 	}
 
-	public function getByEmail($xemail)
+	public function proses_add()
 	{
-        $xemail = str_replace("%40", "@", $xemail);
-		$data['result'] = $this->M_Supplier->getbyEmail($xemail);
-		$this->load->view('v_supplier', $data);
+		$data['ID_SUPPLIER'] = null;
+		$data['KODE_SUPPLIER'] = $this->input->get('kode');
+        $data['NAMA_SUPPLIER'] = $this->input->get('nama');
+        $data['ALAMAT_SUPPLIER'] = $this->input->get('alamat');
+        $data['EMAIL_SUPPLIER'] = $this->input->get('email');
+        $data['TELP_SUPPLIER'] = $this->input->get('telp');
+
+        $this->M_Supplier->insertData($data);
+
+        redirect('supplier');
 	}
 
-	public function getByTelp($xmerek)
+	public function proses_edit()
 	{
-		$data['result'] = $this->M_Supplier->getbyTelp($xmerek);
-		$this->load->view('v_supplier', $data);
+		$data['KODE_SUPPLIER'] = $this->input->get('kode');
+        $data['NAMA_SUPPLIER'] = $this->input->get('nama');
+        $data['ALAMAT_SUPPLIER'] = $this->input->get('alamat');
+        $data['EMAIL_SUPPLIER'] = $this->input->get('email');
+        $data['TELP_SUPPLIER'] = $this->input->get('telp');
+
+        $this->M_Supplier->updateData($this->input->get('id'), $data);
+
+        redirect('supplier');
+	}
+
+	public function proses_delete()
+	{
+        $this->M_Supplier->deleteData($this->input->get('id'));
+
+        redirect('supplier');
 	}
 }

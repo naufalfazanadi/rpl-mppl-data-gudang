@@ -7,25 +7,6 @@
             parent::__construct();
         }
 
-        function login($xusername, $xpassword)
-        {
-            $this->db->select('*');
-            $this->db->where('username', $xusername);
-            $this->db->where('password', $xpassword);
-
-            $user = $this->db->get('t_user');
-
-            if ($user->num_rows() > 0) 
-            {
-                return $user;
-            }
-
-            else
-            {
-                return FALSE;
-            }
-        }
-
         public function getAll()
         {
             $q = $this->db->select('*')->from('t_barang')->get();

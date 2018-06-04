@@ -1,102 +1,48 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Barang</title>
-
-		<style type="text/css">
-
-		::selection { background-color: #E13300; color: white; }
-		::-moz-selection { background-color: #E13300; color: white; }
-
-		body {
-			background-color: #fff;
-			margin: 40px;
-			font: 13px/20px normal Helvetica, Arial, sans-serif;
-			color: #4F5155;
-		}
-
-		a {
-			color: #003399;
-			background-color: transparent;
-			font-weight: normal;
-		}
-
-		h1 {
-			color: #444;
-			background-color: transparent;
-			border-bottom: 1px solid #D0D0D0;
-			font-size: 19px;
-			font-weight: normal;
-			margin: 0 0 14px 0;
-			padding: 14px 15px 10px 15px;
-		}
-
-		code {
-			font-family: Consolas, Monaco, Courier New, Courier, monospace;
-			font-size: 12px;
-			background-color: #f9f9f9;
-			border: 1px solid #D0D0D0;
-			color: #002166;
-			display: block;
-			margin: 14px 0 14px 0;
-			padding: 12px 10px 12px 10px;
-		}
-
-		#body {
-			margin: 0 15px 0 15px;
-		}
-
-		p.footer {
-			text-align: right;
-			font-size: 11px;
-			border-top: 1px solid #D0D0D0;
-			line-height: 32px;
-			padding: 0 10px 0 10px;
-			margin: 20px 0 0 0;
-		}
-
-		#container {
-			margin: 10px;
-			border: 1px solid #D0D0D0;
-			box-shadow: 0 0 8px #D0D0D0;
-		}
-		</style>
-	</head>
-	<body>
-		<div id="container">
-			<h1>Barang</h1>
-			<div id="body">
-				<table border="2" cellpadding="10">
+<body>
+	<div id="container" style="margin-left: 50px; margin-top: 80px">
+		<nav aria-label="Page navigation example" style="margin-right: 100px">
+		  <ul class="pagination justify-content-end">
+		    <li class="page-item disabled">
+		      <a class="page-link" href="#" tabindex="-1">Previous</a>
+		    </li>
+		    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item">
+		      <a class="page-link" href="#">Next</a>
+		    </li>
+		  </ul>
+		</nav>
+		<a href="<?php echo base_url().'v_insert' ?>"><button class="btn btn-info rounded">Tambah Barang Baru</button></a><br><br>
+		<div id="body">
+			<table border="2" cellpadding="15">
+				<thead class="thead-dark">
+				<tr>
+					<th>Kode Barang</th>
+					<th>Nama Barang</th>
+					<th>Kategori</th>
+					<th>Merek</th>
+					<th>Harga</th>
+					<th>Stok</th>
+					<th>ACTION</th>
+				</tr>
+				</thead>
+				<?php foreach ($result as $hasil) { ?>
 					<tr>
-						<td>Kode Barang</td>
-						<td>Nama Barang</td>
-						<td>Kategori</td>
-						<td>Merek</td>
-						<td>Stok</td>
-						<td>Letak barang</td>
-						<td>ACTION</td>
+						<td><?php echo $hasil->KODE_BARANG; ?></td>
+						<td><?php echo $hasil->NAMA_BARANG; ?></td>
+						<td><?php echo $hasil->NAMA_KATEGORI; ?></td>
+						<td><?php echo $hasil->NAMA_MEREK; ?></td>
+						<td><?php echo $hasil->HARGA_BARANG; ?></td>
+						<td><?php echo $hasil->JUMLAH_STOK; ?></td>
+						<td>
+							<a href=""><button class="btn btn-warning rounded">Edit</button></a>
+							<a href=""><button class="btn btn-danger rounded">Hapus</button></a>
+						</td>
 					</tr>
-					<?php foreach ($result as $hasil) { ?>
-						<tr>
-							<td><?php echo $hasil->kode_barang; ?></td>
-							<td><?php echo $hasil->nama_barang; ?></td>
-							<td><?php echo $hasil->kategori; ?></td>
-							<td><?php echo $hasil->merek; ?></td>
-							<td><?php echo $hasil->stok; ?></td>
-							<td><?php echo $hasil->letak_barang; ?></td>
-							<td>
-								<a href=""><button>Edit</button></a>
-								<a href=""><button>Hapus</button></a>
-							</td>
-						</tr>
-					<?php } ?>
-				</table>
-				<br><br><a href="<?php echo base_url().'v_insert' ?>"><button>Tambah</button></a><br>
-			</div>
+				<?php } ?>
+			</table>
+			<br><a href="<?php echo base_url().'v_insert' ?>"><button class="btn btn-info rounded">Tambah Barang Baru</button></a><br><br>
 		</div>
-	</body>
-</html>
+	</div>
+</body>
