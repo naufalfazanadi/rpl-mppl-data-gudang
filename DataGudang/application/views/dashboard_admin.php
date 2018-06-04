@@ -168,7 +168,7 @@
               </div>
               <div class="mr-5">
                 <strong>Record Transaksi Masuk</strong>
-                <!-- <p>asas<p> -->
+                <p><?php echo $countTransaksiIn; ?> records<p>
               </div>
             </div>
             <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Transaksi/masuk') ?>">
@@ -187,7 +187,7 @@
               </div>
               <div class="mr-5">
                 <strong>Record Transaksi Keluar</strong>
-                <!-- <p>asas<p> -->
+                <p><?php echo $countTransaksiOut; ?> records<p>
               </div>
             </div>
             <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Transaksi/keluar') ?>">
@@ -206,10 +206,10 @@
               </div>
               <div class="mr-5">
                 <strong>Record Detail Transaksi</strong>
-                <!-- <p>asas<p> -->
+                <p><?php echo $countDetailTransaksi; ?> records<p>
               </div>
             </div>
-            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Transaksi/detail') ?>">
+            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Detail_Transaksi') ?>">
               <span class="float-left">Masuk</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>

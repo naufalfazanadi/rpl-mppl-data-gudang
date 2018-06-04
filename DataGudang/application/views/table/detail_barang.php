@@ -98,7 +98,7 @@
                   <th>Alamat Gudang</th>
                   <th>Lokasi Barang</th>
                   <th>Stok</th>
-                  <th>Action</th>
+                  <!-- <th>Action</th> -->
                 </tr>
               </thead>
               <tfoot>
@@ -112,7 +112,7 @@
                   <th>Alamat Gudang</th>
                   <th>Lokasi Barang</th>
                   <th>Stok</th>
-                  <th>Action</th>
+                  <!-- <th>Action</th> -->
                 </tr>
               </tfoot>
               <tbody>
@@ -128,7 +128,7 @@
                   <td><?php echo $hasil->ALAMAT_GUDANG; ?></td>
                   <td><?php echo $hasil->LOKASI_BARANG; ?></td>
                   <td><?php echo $hasil->STOK_BARANG; ?></td>
-                  <td>
+                  <!-- <td>
                     <a href="
                       <?php echo base_url('Detail_Barang/edit').
                         "?kode=".$hasil->KODE_BARANG.
@@ -141,7 +141,7 @@
                         "&stok=".$hasil->STOK_BARANG.
                         "&id=".$hasil->ID_DETAIL_BARANG;
                       ?>">
-                      <button class="btn btn-warning rounded"><i class="fa fa-edit"></i> Edit</button></a>
+                      <button class="btn btn-warning rounded"><i class="fa fa-edit"></i> Edit</button></a> -->
                     <!-- <a href=""><button class="btn btn-danger rounded">Hapus</button></a> -->
                   </td>
                 </tr>

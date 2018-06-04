@@ -60,7 +60,7 @@
                 <!-- <p>asas<p> -->
               </div>
             </div>
-            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Transaksi/detail'); ?>">
+            <a class="card-footer text-black clearfix small z-1" href="<?php echo base_url('Detail_Transaksi'); ?>">
               <span class="float-left">Masuk</span>
               <span class="float-right">
                 <i class="fa fa-angle-right"></i>

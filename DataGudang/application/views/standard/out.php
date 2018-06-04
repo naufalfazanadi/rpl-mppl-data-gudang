@@ -7,20 +7,16 @@
         </li>
         <li class="breadcrumb-item active">Barang</li>
       </ol>
-      <a href="<?php echo base_url('Barang/add'); ?>">
-        <button class="btn btn-success">
-          <span>
-            <i class="fa fa-plus"></i>
-          </span>
-          Tambah Barang
-        </button>
-      </a>
-      <br><br>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Master Barang</div>
+          <i class="fa fa-table"></i> Data Master Barang
+        </div>
         <div class="card-body page navigation">
+          <div class="pagination justify-content-end">
+            <a href="<?php echo base_url('Barang/cart'); ?>"><button class="btn btn-warning rounded"><i class="fa fa-shopping-cart"></i>&nbsp;<?php echo $this->cart->total_items(). " Items"; ?></button></a><br>
+          </div>
+          <br>
           <form class="pagination justify-content-end" action="<?php echo base_url('Barang/get') ?>" method="GET">
             <div class="input-group" style="max-width: 50%">
               <div class="input-group-prepend">
@@ -111,15 +107,13 @@
                   </td>
                   <td>
                     <a href="
-                      <?php echo base_url('Barang/edit').
-                        "?kode=".$hasil->KODE_BARANG.
+                      <?php echo base_url('Barang/addCart').
+                        "?barang=".$hasil->ID_BARANG.
                         "&nama=".$hasil->NAMA_BARANG.
-                        "&kategori=".$hasil->NAMA_KATEGORI.
-                        "&merek=".$hasil->NAMA_MEREK.
                         "&harga=".$hasil->HARGA_BARANG.
-                        "&id=".$hasil->ID_BARANG;
+                        "&qty=1";
                       ?>">
-                      <button class="btn btn-warning rounded"><i class="fa fa-edit"></i> Edit</button></a>
+                      <button class="btn btn-warning rounded" <?php if ($status == 0) {echo "disabled";} ?>><i class="fa fa-plus"></i> Add to Cart</button></a>
                     <!-- <a href=""><button class="btn btn-danger rounded">Hapus</button></a> -->
                   </td>
                 </tr>

@@ -20,6 +20,16 @@
             return $q->result();
         }
 
+        public function getByRangeIn($xparam, $xmin, $xmax)
+        {
+            $this->db->where('nama_tipe_transaksi', "Masuk");
+            $this->db->where($xparam.">=", $xmin);
+            $this->db->where($xparam."<=", $xmax);
+            $q = $this->db->select('*')->from('v_transaksi')->get();
+
+            return $q->result();
+        }
+
         public function getAllOut()
         {
             $this->db->where('nama_tipe_transaksi', "Keluar");
@@ -27,9 +37,26 @@
             return $q->result();
         }
 
-        public function count()
+        public function getByRangeOut($xparam, $xmin, $xmax)
         {
-            return $this->db->count_all('t_transaksi'); 
+            $this->db->where('nama_tipe_transaksi', "Keluar");
+            $this->db->where($xparam.">=", $xmin);
+            $this->db->where($xparam."<=", $xmax);
+            $q = $this->db->select('*')->from('v_transaksi')->get();
+
+            return $q->result();
+        }
+
+        public function countIn()
+        {
+            $this->db->where('id_tipe_transaksi', 1);
+            return $this->db->count_all_results('t_transaksi'); 
+        }
+
+        public function countOut()
+        {
+            $this->db->where('id_tipe_transaksi', 2);
+            return $this->db->count_all_results('t_transaksi'); 
         }
 
         public function getBy($xparam, $xargs)

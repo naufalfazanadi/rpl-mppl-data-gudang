@@ -1,18 +1,19 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Transaksi extends CI_Controller {
+class Detail_Transaksi extends CI_Controller {
 
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('MV_Transaksi');
+		$this->load->model('MV_Detail_Transaksi');
+		$this->load->model('M_Barang');
 		$this->load->model('M_Customer');
 		$this->load->model('M_Supplier');
 		$this->load->model('M_User');
 	}
 
-	// MENU REKAP TRANSAKSI HANYA UNTUK ADMIN
+	// MENU REKAP DETAIL TRANSAKSI HANYA UNTUK ADMIN
 	public function verify()
 	{
 		if ($this->session->userdata('isLoggedIn'))
@@ -33,89 +34,41 @@ class Transaksi extends CI_Controller {
 	}
 
 
-	// MASTER TRANSAKSI
+	// DETAIL TRANSAKSI
 	public function index()
 	{
 		if ($this->verify())
 		{
+			$data['result'] = $this->MV_Detail_Transaksi->getAll();
 			$this->load->view('header');
-			$this->load->view('table/transaksi');
+			$this->load->view('table/detail_transaksi', $data);
 			$this->load->view('footer');
 		}
 	}
 
-	public function masuk()
-	{
-		if ($this->verify())
-		{
-			$data['result'] = $this->MV_Transaksi->getAllIn();
-			$this->load->view('header');
-			$this->load->view('table/transaksi_masuk', $data);
-			$this->load->view('footer');
-		}
-	}
-
-	public function keluar()
-	{
-		if ($this->verify())
-		{
-			$data['result'] = $this->MV_Transaksi->getAllOut();
-			$this->load->view('header');
-			$this->load->view('table/transaksi_keluar', $data);
-			$this->load->view('footer');
-		}
-	}
-
-	public function getByIn()
+	public function getBy()
 	{
 		if ($this->verify())
 		{
 			$xparam = $this->input->get('getBy');
 			$xargs = $this->input->get('search');
-			$data['result'] = $this->MV_Transaksi->getByIn($xparam, $xargs);
+			$data['result'] = $this->MV_Transaksi->getBy($xparam, $xargs);
 			$this->load->view('header');
-			$this->load->view('table/transaksi_masuk', $data);
+			$this->load->view('table/detail_transaksi', $data);
 			$this->load->view('footer');
 		}
 	}
 
-	public function getByRangeIn()
+	public function getByRange()
 	{
 		if ($this->verify())
 		{
 			$xparam = $this->input->get('getBy');
 			$xmin = $this->input->get('min');
 			$xmax = $this->input->get('max');
-			$data['result'] = $this->MV_Transaksi->getByRangeIn($xparam, $xmin, $xmax);
+			$data['result'] = $this->MV_Detail_Transaksi->getByRange($xparam, $xmin, $xmax);
 			$this->load->view('header');
-			$this->load->view('table/transaksi_masuk', $data);
-			$this->load->view('footer');
-		}
-	}
-
-	public function getByOut()
-	{
-		if ($this->verify())
-		{
-			$xparam = $this->input->get('getBy');
-			$xargs = $this->input->get('search');
-			$data['result'] = $this->MV_Transaksi->getByOut($xparam, $xargs);
-			$this->load->view('header');
-			$this->load->view('table/transaksi_keluar', $data);
-			$this->load->view('footer');
-		}
-	}
-
-	public function getByRangeOut()
-	{
-		if ($this->verify())
-		{
-			$xparam = $this->input->get('getBy');
-			$xmin = $this->input->get('min');
-			$xmax = $this->input->get('max');
-			$data['result'] = $this->MV_Transaksi->getByRangeOut($xparam, $xmin, $xmax);
-			$this->load->view('header');
-			$this->load->view('table/transaksi_keluar', $data);
+			$this->load->view('table/detail_transaksi', $data);
 			$this->load->view('footer');
 		}
 	}
@@ -155,19 +108,6 @@ class Transaksi extends CI_Controller {
         $data['HARGA_BARANG'] = $this->input->get('harga');
 
         $this->MV_Transaksi->insertData($data);
-
-        redirect('barang');
-	}
-
-	public function proses_edit()
-	{
-		$data['ID_KATEGORI'] = $this->input->get('kategori');
-		$data['ID_MEREK'] = $this->input->get('merek');
-		$data['KODE_BARANG'] = $this->input->get('kode');
-        $data['NAMA_BARANG'] = $this->input->get('nama');
-        $data['HARGA_BARANG'] = $this->input->get('harga');
-
-        $this->MV_Transaksi->updateData($this->input->get('id'), $data);
 
         redirect('barang');
 	}

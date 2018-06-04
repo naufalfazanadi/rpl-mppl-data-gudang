@@ -87,6 +87,9 @@
             <li>
               <a href="<?php echo base_url('Transaksi/keluar') ?>"><i class="fa fa-fw fa-minus"></i> Keluar</a>
             </li>
+            <li>
+              <a href="<?php echo base_url('Detail_Transaksi') ?>"><i class="fa fa-fw fa-exchange"></i> Detail Transaksi</a>
+            </li>
           </ul>
         </li>
       </ul>

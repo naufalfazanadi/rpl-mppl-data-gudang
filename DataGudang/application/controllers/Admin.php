@@ -8,6 +8,8 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->model('MV_Barang');
+		$this->load->model('MV_Transaksi');
+		$this->load->model('MV_Detail_Transaksi');
 		$this->load->model('M_Customer');
 		$this->load->model('M_Gudang');
 		$this->load->model('M_Kategori');
@@ -46,6 +48,9 @@ class Admin extends CI_Controller {
 			$data['countMerek'] = $this->M_Merek->count();
 			$data['countSupplier'] = $this->M_Supplier->count();
 			$data['countUser'] = $this->M_User->count();
+			$data['countTransaksiIn'] = $this->MV_Transaksi->countIn();
+			$data['countTransaksiOut'] = $this->MV_Transaksi->countOut();
+			$data['countDetailTransaksi'] = $this->MV_Detail_Transaksi->count();
 			
 			$this->load->view('header');
 			$this->load->view('dashboard_admin', $data);

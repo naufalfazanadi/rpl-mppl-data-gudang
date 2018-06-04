@@ -51,6 +51,37 @@
               </div>
             </div>
           </form>
+          <form class="d-print-none pagination justify-content-end" action="<?php echo base_url('Transaksi/getByRangeIn') ?>" method="GET">
+            <div class="input-group" style="max-width: 50%">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Search by:</span>
+              </div>
+              <select class="custom-select" name="getBy">
+                <option value="JUMLAH_QTY" 
+                  <?php if($this->input->get('getBy') == "JUMLAH_QTY") echo "selected" ?>>
+                  Quantity
+                </option>
+
+                <option value="WAKTU_TRANSAKSI" 
+                  <?php if($this->input->get('getBy') == "WAKTU_TRANSAKSI") echo "selected" ?>>
+                  Waktu
+                </option>
+
+                <option value="JUMLAH_HARGA" 
+                  <?php if($this->input->get('getBy') == "JUMLAH_HARGA") echo "selected" ?>>
+                  Jumlah Harga
+                </option>
+              </select>
+              <input class="form-control" name="min" type="text" value="<?php if($this->input->get('min')) echo $this->input->get('min') ?>" placeholder="Min" required>
+              <div class="input-group-prepend">
+                <span class="input-group-text">-</span>
+              </div>
+              <input class="form-control" name="max" type="text" value="<?php if($this->input->get('max')) echo $this->input->get('max') ?>" placeholder="Max" required>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"><span><i class="fa fa-search"></i></span></button>
+              </div>
+            </div>
+          </form>
           <br>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

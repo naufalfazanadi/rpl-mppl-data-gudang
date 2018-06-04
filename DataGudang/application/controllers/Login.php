@@ -53,6 +53,7 @@ class Login extends CI_Controller {
 
 			$arSession = [
 				'isLoggedIn' => TRUE,
+				'id' => $row->ID_AKUN,
 				'username' => $row->USERNAME,
 				'password' => $row->PASSWORD,
 				'nama' => $row->NAMA_USER,
